@@ -9,8 +9,9 @@ export function MovieCard({ movie }) {
   };
 
   const poster = (useFallback = false) => {
-    if (!useFallback && movie.Poster && movie.Poster !== "N/A")
+    if (!useFallback && movie.Poster && movie.Poster !== "N/A") {
       return movie.Poster;
+    }
 
     const placeholder = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
       <rect width="300" height="450" rx="12" fill="#1e293b"/>
@@ -23,12 +24,12 @@ export function MovieCard({ movie }) {
   };
   return (
     <li>
-      <h2>{movie.Title}</h2>
       <img
         src={poster()}
         alt={"poster for " + movie.Title}
         onError={(e) => handleError(e)}
       />
+      <h2>{movie.Title}</h2>
     </li>
   );
 }

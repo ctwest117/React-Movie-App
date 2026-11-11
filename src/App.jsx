@@ -2,6 +2,8 @@ import React from "react";
 import { SearchBar } from "./components/SearchBar";
 import { List } from "./components/List";
 import { useMovies } from "./hooks/useMovies";
+import { NavBar } from "./components/NavBar";
+import { Message } from "./components/Message";
 
 function App() {
   const [term, setTerm] = React.useState("");
@@ -13,20 +15,24 @@ function App() {
   const handleSearch = (value) => {
     const cleanVal = value.toLowerCase().trim();
     setTerm(cleanVal);
-    console.log(movies);
   };
 
   return (
-    <main id="app">
-      <SearchBar handleSearch={handleSearch} />
-      <List
-        movies={movies}
-        page={page}
-        setPage={setPage}
-        isLoading={isLoading}
-        error={err}
-      />
-    </main>
+    <>
+      <NavBar>
+        <SearchBar handleSearch={handleSearch} />
+      </NavBar>
+      <main id="app">
+        <Message isLoading={isLoading} err={err} movies={movies} />
+        <List
+          movies={movies}
+          page={page}
+          setPage={setPage}
+          isLoading={isLoading}
+          error={err}
+        />
+      </main>
+    </>
   );
 }
 

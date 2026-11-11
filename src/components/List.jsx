@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { MovieCard } from "./MovieCard";
+import { PageButton } from "./Paginate";
 
-export function List({ movies, page, setPage, isLoading, error }) {
+export function List({ movies, page, setPage }) {
   const handleClick = (num) => {
     if (movies.length === 0) return;
     if (page === 0 && num < 1) return;
@@ -9,24 +10,13 @@ export function List({ movies, page, setPage, isLoading, error }) {
   };
   return (
     <div>
-      <ul>
-        {isLoading
-          ? "Loading Movies..."
-          : movies.map((movie) => (
-              <MovieCard key={movie.imdbID} movie={movie} />
-            ))}
+      <PageButton movies={movies} page={page} handleClick={handleClick} />
+      <ul className="grid lg:grid-cols-5 grid-cols-2">
+        {movies.map((movie) => (
+          <MovieCard key={movie.imdbID} movie={movie} />
+        ))}
       </ul>
-      {page > 1 && movies.length !== 0 && (
-        <button className="border p-1" onClick={() => handleClick(-1)}>
-          Previous Page
-        </button>
-      )}
-      {movies.length !== 0 && <span className="border p-1">{page}</span>}
-      {movies.length !== 0 && (
-        <button className="border p-1" onClick={() => handleClick(1)}>
-          Next Page
-        </button>
-      )}
+      <PageButton movies={movies} page={page} handleClick={handleClick} />
     </div>
   );
 }
