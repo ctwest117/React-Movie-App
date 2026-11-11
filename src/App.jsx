@@ -3,7 +3,6 @@ import { SearchBar } from "./components/SearchBar";
 import { List } from "./components/List";
 import { useMovies } from "./hooks/useMovies";
 import { Message } from "./components/Message";
-import { OBJ } from "./OBJ";
 
 function App() {
   const [term, setTerm] = React.useState("");
@@ -22,7 +21,7 @@ function App() {
       <SearchBar handleSearch={handleSearch} />
       <Message isLoading={isLoading} err={err} movies={movies} />
       <List
-        movies={OBJ /* movies */}
+        movies={movies}
         page={page}
         setPage={setPage}
         isLoading={isLoading}

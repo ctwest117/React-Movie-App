@@ -12,9 +12,9 @@ export function List({ movies, page, setPage }) {
     setPage((prev) => prev + num);
   };
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <PageButton movies={movies} page={page} handleClick={handleClick} />
-      <ul className="grid lg:grid-cols-5 grid-cols-2">
+      <ul className="p-5 gap-3 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2">
         {movies.map((movie) => (
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
