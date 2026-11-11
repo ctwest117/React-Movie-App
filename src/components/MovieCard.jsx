@@ -30,6 +30,8 @@ export function MovieCard({ movie }) {
         onError={(e) => handleError(e)}
       />
       <h2>{movie.Title}</h2>
+      <p>{movie.Type}</p>
+      <p>{movie.Year}</p>
     </li>
   );
 }
