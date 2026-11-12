@@ -4,7 +4,7 @@ export function MovieCard({ movie }) {
   const capitalize = (str) => {
     if (!str) return;
     const first = str[0];
-    str.replace(first, first.toUpperCase());
+    return str.replace(first, first.toUpperCase());
   };
   const handleError = (event) => {
     const fallback = poster(true);
