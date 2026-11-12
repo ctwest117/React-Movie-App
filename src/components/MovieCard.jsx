@@ -27,11 +27,11 @@ export function MovieCard({ movie }) {
       <img
         src={poster()}
         alt={"poster for " + movie.Title}
-        className="max-h-[85%]"
+        className="h-[85%]"
         onError={(e) => handleError(e)}
       />
-      <h1 className="truncate text-md">{movie.Title}</h1>
-      <p className="text-sm">{movie.Year}</p>
+      <h1 className="truncate text-md md:text-2xl py-3">{movie.Title}</h1>
+      <p className="text-sm md:text-lg py-3">{movie.Year}</p>
     </li>
   );
 }
