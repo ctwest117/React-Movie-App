@@ -7,7 +7,7 @@ import { Message } from "./components/Message";
 function App() {
   const [term, setTerm] = React.useState("");
   const [page, setPage] = React.useState(1);
-  const { movies, isLoading, err } = useMovies(term, page);
+  const { movies, totalResults, isLoading, err } = useMovies(term, page);
 
   React.useEffect(() => setPage(1), [term]);
 
@@ -19,7 +19,13 @@ function App() {
   return (
     <main id="app">
       <SearchBar handleSearch={handleSearch} />
-      <Message isLoading={isLoading} err={err} movies={movies} term={term} />
+      <Message
+        isLoading={isLoading}
+        err={err}
+        movies={movies}
+        term={term}
+        totalResults={totalResults}
+      />
       <List
         movies={movies}
         page={page}

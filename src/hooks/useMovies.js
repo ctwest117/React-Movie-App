@@ -4,12 +4,14 @@ const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&`;
 
 export function useMovies(term, page) {
   const [movies, setMovies] = React.useState([]);
+  const [totalResults, setTotalResults] = React.useState(0);
   const [isLoading, setLoading] = React.useState(false);
   const [err, setErr] = React.useState(null);
 
   React.useEffect(() => {
     if (!term.trim()) {
       setMovies([]);
+      setTotalResults(0);
       setErr(null);
       setLoading(false);
       return;
@@ -32,16 +34,19 @@ export function useMovies(term, page) {
         if (data.Response === "False") {
           if (data.Error === "Movie not found!") {
             setMovies([]);
+            setTotalResults(0);
             return;
           }
           throw new Error(data.Error);
         }
 
         setMovies(data.Search ?? []);
+        setTotalResults(Number(data.totalResults ?? 0));
       } catch (error) {
         if (!controller.signal.aborted) {
           setErr(error.message);
           setMovies([]);
+          setTotalResults(0);
         }
       } finally {
         if (!controller.signal.aborted) setLoading(false);
@@ -52,5 +57,5 @@ export function useMovies(term, page) {
     return () => controller.abort();
   }, [term, page]);
 
-  return { movies, isLoading, err };
+  return { movies, isLoading, err, totalResults };
 }

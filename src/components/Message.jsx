@@ -1,5 +1,5 @@
 import { VidSvg } from "./VidSvg";
-export function Message({ isLoading, err, movies, term }) {
+export function Message({ isLoading, err, movies, term, totalResults }) {
   const message = () => {
     if (err)
       return (
@@ -22,7 +22,7 @@ export function Message({ isLoading, err, movies, term }) {
           <VidSvg />
         </>
       ) : (
-        <div>{movies.length} results</div>
+        <div>{totalResults} results</div>
       );
   };
 
