@@ -16,14 +16,13 @@ export function useMovies(term, page) {
       setLoading(false);
       return;
     }
-    setErr(null);
-    setLoading(false);
+
     const controller = new AbortController();
-    const searchTerm = `${baseUrl}s=${term}&page=${page}`;
+    const fullURL = `${baseUrl}s=${term}&page=${page}`;
     async function fetchMovies() {
       setLoading(true);
       try {
-        const response = await fetch(searchTerm, { signal: controller.signal });
+        const response = await fetch(fullURL, { signal: controller.signal });
 
         if (!response.ok) {
           throw new Error(`Request failed (status: ${response.status})`);

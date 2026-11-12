@@ -5,7 +5,7 @@ export function PageButton({ movies, page, handleClick }) {
         <>
           <button
             className="border-slate-700 border-2 bg-amber-400 Button hover: hover:bg-amber-500 hover:cursor-pointer rounded-sm p-2"
-            onClick={() => handleClick(0)}
+            onClick={() => handleClick(1 - page)}
           >
             {"<<"}
           </button>

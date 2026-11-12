@@ -5,10 +5,6 @@ export function List({ movies, page, setPage }) {
   const handleClick = (num) => {
     if (movies.length === 0) return;
     if (page === 1 && num < 1) return;
-    if (num === 0) {
-      setPage(1);
-      return;
-    }
     setPage((prev) => prev + num);
   };
   return (

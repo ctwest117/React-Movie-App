@@ -1,6 +1,11 @@
 import { useState } from "react";
 
 export function MovieCard({ movie }) {
+  const capitalize = (str) => {
+    if (!str) return;
+    const first = str[0];
+    str.replace(first, first.toUpperCase());
+  };
   const handleError = (event) => {
     const fallback = poster(true);
     if (event.currentTarget.src !== fallback) {
@@ -31,7 +36,9 @@ export function MovieCard({ movie }) {
         onError={(e) => handleError(e)}
       />
       <h1 className="truncate text-md md:text-2xl py-3">{movie.Title}</h1>
-      <p className="text-sm md:text-lg py-3">{movie.Year}</p>
+      <p className="text-sm md:text-lg py-3">
+        {movie.Year} · {capitalize(movie.Type)}
+      </p>
     </li>
   );
 }
