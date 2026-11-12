@@ -1,6 +1,7 @@
-export function Message({ isLoading, err, movies }) {
+export function Message({ isLoading, err, movies, term }) {
   const message = () => {
     if (err) return <div className="text-red-600">{err}</div>;
+    if (!term) return <div>Type something</div>;
     else
       return isLoading ? (
         <div>Loading...</div>

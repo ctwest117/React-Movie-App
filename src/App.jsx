@@ -19,7 +19,7 @@ function App() {
   return (
     <main id="app">
       <SearchBar handleSearch={handleSearch} />
-      <Message isLoading={isLoading} err={err} movies={movies} />
+      <Message isLoading={isLoading} err={err} movies={movies} term={term} />
       <List
         movies={movies}
         page={page}
