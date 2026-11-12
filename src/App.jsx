@@ -9,10 +9,9 @@ function App() {
   const [page, setPage] = React.useState(1);
   const { movies, totalResults, isLoading, err } = useMovies(term, page);
 
-  React.useEffect(() => setPage(1), [term]);
-
   const handleSearch = (value) => {
     const cleanVal = value.toLowerCase().trim();
+    setPage(1);
     setTerm(cleanVal);
   };
 

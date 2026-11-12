@@ -1,4 +1,3 @@
-
 # Movie App
 
 A simple movie search app built with React, Vite, and Tailwind CSS. Uses the OMDb API to find movies and browse results.
@@ -19,3 +18,9 @@ A simple movie search app built with React, Vite, and Tailwind CSS. Uses the OMD
    ```
 
 Run `npm run build` to create a production build.
+
+things I refactored:
+
+- handleSearch sets the page count instead of a useEffect.
+- useMovies hook had redundant state setting and some bad variable names. removed the redundant state setting and renamed the variable (searchTerm to fullURL)
+- List's handleClick originally took in a number and added it to page, but if 0 was put in it reset page to 0. refactored it to not accept anything below 1, then made the button pass the correct number to reset it to 1 to make it more inline with how the functon should work.
