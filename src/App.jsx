@@ -1,37 +1,18 @@
 import React from "react";
-import { SearchBar } from "./components/SearchBar";
-import { List } from "./components/List";
-import { useMovies } from "./hooks/useMovies";
-import { Message } from "./components/Message";
+import { Routes, Route, NavLink } from "react-router";
+import { Router } from "./components/Router";
 
 function App() {
-  const [term, setTerm] = React.useState("");
-  const [page, setPage] = React.useState(1);
-  const { movies, totalResults, isLoading, err } = useMovies(term, page);
-
-  const handleSearch = (value) => {
-    const cleanVal = value.toLowerCase().trim();
-    setPage(1);
-    setTerm(cleanVal);
-  };
-
   return (
     <main id="app">
-      <SearchBar handleSearch={handleSearch} />
-      <Message
-        isLoading={isLoading}
-        err={err}
-        movies={movies}
-        term={term}
-        totalResults={totalResults}
-      />
-      <List
-        movies={movies}
-        page={page}
-        setPage={setPage}
-        isLoading={isLoading}
-        error={err}
-      />
+      <nav className="flex justify-between">
+        <NavLink to="/">OMBd Movies</NavLink>
+        <div className="flex gap-3">
+          <NavLink to="/movies">Movies</NavLink>
+          <NavLink to="/">Home</NavLink>
+        </div>
+      </nav>
+      <Router />
     </main>
   );
 }
