@@ -3,16 +3,32 @@ import { SearchBar } from "./SearchBar";
 import { List } from "./List";
 import { useMovies } from "../hooks/useMovies";
 import { Message } from "./Message";
+import { useSearchParams } from "react-router";
 
 export function Movies() {
-  const [term, setTerm] = React.useState("");
-  const [page, setPage] = React.useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const term = searchParams.get("term") ?? "";
+  const rawPage = Number(searchParams.get("page") ?? 1);
+  const page = Number.isInteger(rawPage) && rawPage > 0 ? rawPage : 1;
+
   const { movies, totalResults, isLoading, err } = useMovies(term, page);
 
   const handleSearch = (value) => {
-    const cleanVal = value.toLowerCase().trim();
-    setPage(1);
-    setTerm(cleanVal);
+    setSearchParams((params) => {
+      params.set("term", value.toLowerCase().trim());
+      params.set("page", "1");
+      return params;
+    });
+  };
+
+  const setPage = (value) => {
+    const nextPage = typeof value === "function" ? value(page) : value;
+
+    setSearchParams((params) => {
+      params.set("page", String(Math.max(1, nextPage)));
+      return params;
+    });
   };
 
   return (

@@ -1,6 +1,6 @@
 import { VidSvg } from "./VidSvg";
 
-export function Message({ isLoading, err, movies, term, totalResults, txt }) {
+export function Message({ isLoading, err, term, totalResults, txt }) {
   const message = () => {
     if (err)
       return (

@@ -1,6 +1,4 @@
-import React from "react";
-import { Routes, Route, NavLink } from "react-router";
-import { Router } from "./components/Router";
+import { NavLink, Outlet } from "react-router";
 
 function App() {
   return (
@@ -12,7 +10,7 @@ function App() {
           <NavLink to="/">Home</NavLink>
         </div>
       </nav>
-      <Router />
+      <Outlet />
     </main>
   );
 }

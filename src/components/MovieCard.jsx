@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 export function MovieCard({ movie }) {
   const capitalize = (str) => {
@@ -39,6 +40,7 @@ export function MovieCard({ movie }) {
       <p className="text-sm md:text-lg py-3">
         {movie.Year} · {capitalize(movie.Type)}
       </p>
+      <Link to={`/movies/${movie.imdbID}`}>Details</Link>
     </li>
   );
 }
