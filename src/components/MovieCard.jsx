@@ -29,18 +29,19 @@ export function MovieCard({ movie }) {
     return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(placeholder)}`;
   };
   return (
-    <li className="min-w-10 p-1 bg-slate-800 flex flex-col hover:-translate-y-0.5 shadow-black hover:shadow text-slate-90">
-      <img
-        src={poster()}
-        alt={"poster for " + movie.Title}
-        className="h-[85%]"
-        onError={(e) => handleError(e)}
-      />
-      <h1 className="truncate text-md md:text-2xl py-3">{movie.Title}</h1>
-      <p className="text-sm md:text-lg py-3">
-        {movie.Year} · {capitalize(movie.Type)}
-      </p>
-      <Link to={`/movies/${movie.imdbID}`}>Details</Link>
-    </li>
+    <Link to={`/movies/${movie.imdbID}`}>
+      <li className="min-w-10 p-1 bg-slate-800 flex flex-col hover:-translate-y-0.5 shadow-black hover:shadow text-slate-90">
+        <img
+          src={poster()}
+          alt={"poster for " + movie.Title}
+          className="h-[85%]"
+          onError={(e) => handleError(e)}
+        />
+        <h1 className="truncate text-md md:text-2xl py-3">{movie.Title}</h1>
+        <p className="text-sm md:text-lg py-3">
+          {movie.Year} · {capitalize(movie.Type)}
+        </p>
+      </li>
+    </Link>
   );
 }
