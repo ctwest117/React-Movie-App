@@ -6,6 +6,7 @@ const baseObj = { movie: "", name: "", email: "", rating: 0, review: "" };
 export function Review() {
   const [review, setReview] = useState({ ...baseObj });
   const [revList, setRevList] = useState([]);
+  const [errors, setErrs] = useState([]);
 
   const handleChange = (key, val) => {
     setReview((prev) => ({ ...prev, [key]: val }));
@@ -19,10 +20,31 @@ export function Review() {
   };
 
   const checkForm = (rev) => {
+    window.errors = errors;
     const { movie, name, email, rating, review } = rev;
-    if (!movie || !name || rating < 1 || rating > 5) return false;
-    if (!checkEmail(email)) return false;
-    if (revList.some((r) => r.email === email && r.movie === movie)) {
+    setErrs((prev) => []);
+    if (
+      !movie ||
+      !name ||
+      !email ||
+      rating < 1 ||
+      rating > 5 ||
+      !checkEmail(email)
+    ) {
+      if (!movie) {
+        setErrs((prev) => [...prev, "movie"]);
+      }
+      if (!name) {
+        setErrs((prev) => [...prev, "name"]);
+      }
+      if (rating < 1 || rating > 5) {
+        setErrs((prev) => [...prev, "rating"]);
+      }
+      if (!checkEmail(email)) {
+        setErrs((prev) => [...prev, "email"]);
+      }
+      if (revList.some((r) => r.email === email && r.movie === movie)) {
+      }
       return false;
     }
     return true;
@@ -42,7 +64,9 @@ export function Review() {
         onSubmit={(e) => handleSubmit(e)}
       >
         <h1 className="text-xl font-semibold">Write a review</h1>
-        {!review.movie && <label htmlFor="movie">Required</label>}
+        <label htmlFor="movie">
+          {errors.includes("movie") ? "Must add movie title" : "Movie*"}
+        </label>
         <input
           name="movie"
           type="text"
@@ -50,15 +74,19 @@ export function Review() {
           placeholder="Movie Title"
           onChange={(e) => handleChange("movie", e.target.value)}
         />
-        {!review.name && <label htmlFor="name">Required</label>}
+        <label htmlFor="name">
+          {errors.includes("name") ? "Must add name" : "Username*"}
+        </label>
         <input
           name="name"
           type="text"
           value={review.name}
-          placeholder="Username"
+          placeholder="Name"
           onChange={(e) => handleChange("name", e.target.value)}
         />
-        {!checkEmail(review.email) && <label htmlFor="email">Required</label>}
+        <label htmlFor="email">
+          {errors.includes("email") ? "Must add valid email" : "Email*"}
+        </label>
         <input
           name="email"
           type="email"
@@ -66,8 +94,10 @@ export function Review() {
           placeholder="example@email.com"
           onChange={(e) => handleChange("email", e.target.value)}
         />
-        {!review.rating && <label>Required</label>}
-        <div className="flex">
+        <label htmlFor="rating">
+          {errors.includes("rating") ? "Must add Rating" : "Rating*"}
+        </label>
+        <div name="rating" className="flex">
           {[1, 2, 3, 4, 5].map((i) => {
             return (
               <button
@@ -86,7 +116,7 @@ export function Review() {
             );
           })}
         </div>
-        {!review.review && <label htmlFor="review">Not Required</label>}
+        <label htmlFor="review">Review</label>
         <input
           name="review"
           type="text"
@@ -101,7 +131,7 @@ export function Review() {
           Submit
         </button>
       </form>
-      <ul className="space-y-5 [&>li]:space-y-2 [&>li]:border-b [&>li]:border-slate-700 [&>li]:pb-5 [&>li]:break-words">
+      <ul className="space-y-5 [&>li]:space-y-2 [&>li]:border-b [&>li]:border-slate-700 [&>li]:pb-5 [&>li]:wrap-break-word">
         {revList.map(({ movie, name, email, rating, review }) => {
           return (
             <li key={movie + email}>
