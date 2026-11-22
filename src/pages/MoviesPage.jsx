@@ -1,8 +1,8 @@
 import React from "react";
-import { SearchBar } from "./SearchBar";
-import { List } from "./List";
+import { SearchBar } from "../components/SearchBar";
+import { List } from "../components/List";
 import { useMovies } from "../hooks/useMovies";
-import { Message } from "./Message";
+import { Message } from "../components/Message";
 import { useSearchParams } from "react-router";
 
 export function Movies() {

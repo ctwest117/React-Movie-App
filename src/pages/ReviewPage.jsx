@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star } from "./Star";
+import { Star } from "../svgs/Star";
 
 const baseObj = { movie: "", name: "", email: "", rating: 0, review: "" };
 

@@ -1,4 +1,4 @@
-import { VidSvg } from "./VidSvg";
+import { VidSvg } from "../svgs/VidSvg";
 
 export function Message({ isLoading, err, term, totalResults, txt }) {
   const message = () => {

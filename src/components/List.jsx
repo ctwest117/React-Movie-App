@@ -1,4 +1,4 @@
-import { MovieCard } from "./MovieCard";
+import { MovieCard } from "../pages/MovieCard";
 import { PageButton } from "./PageButton";
 
 export function List({ movies, page, setPage }) {

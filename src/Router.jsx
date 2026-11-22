@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router";
-import App from "../App";
-import { Movies } from "./MoviesPage";
-import { Home } from "./HomePage";
-import { MovieDetails } from "./MovieDetails";
-import { Page404 } from "./404";
-import { Review } from "./ReviewPage";
+import App from "./App";
+import { Movies } from "./pages/MoviesPage";
+import { Home } from "./pages/HomePage";
+import { MovieDetails } from "./components/MovieDetails";
+import { Page404 } from "./pages/404";
+import { Review } from "./pages/ReviewPage";
 
 export function Router() {
   return (
