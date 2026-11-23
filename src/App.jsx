@@ -31,6 +31,9 @@ function App() {
           <NavLink to="/review" className={navLinkClass}>
             Reviews
           </NavLink>
+          <NavLink to="/about" className={navLinkClass}>
+            About
+          </NavLink>
         </div>
       </nav>
       <ErrorBoundary fallback={<p>Something went wrong.</p>}>
