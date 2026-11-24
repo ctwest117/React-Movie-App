@@ -10,7 +10,7 @@ function App() {
     }`;
 
   return (
-    <main id="app">
+    <main id="app" className="flow-root">
       <nav
         aria-label="Main navigation"
         className="m-3 flex flex-wrap items-center justify-between gap-3 rounded-sm border border-slate-700 bg-slate-800 px-4 py-3 shadow-sm sm:m-5 sm:px-5"
